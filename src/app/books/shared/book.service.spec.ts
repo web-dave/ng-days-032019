@@ -33,27 +33,14 @@ describe('BookService', () => {
     [BookService, HttpTestingController],
     (service: BookService, backend: HttpTestingController) => {
       // call service method and test IN the subscription. no need to use async anymore!!
-      service.getBooks().subscribe(books => {
-        expect(books).toBe(mockBooks);
-      });
-
-      // Wait for the call and response with mockdata  `.flush()`
-      backend
-        .expectOne(service.restRoot)
-        .flush(mockBooks, { status: 200, statusText: 'Ok' });
+      expect(false).toBeTruthy();
     }
   ));
 
   it('should return one specific book', inject(
     [BookService, HttpTestingController],
     (service: BookService, backend: HttpTestingController) => {
-      service
-        .getBook('Moin')
-        .subscribe(b => expect(b.isbn).toBe(mockBooks[0].isbn));
-      const req = backend.expectOne(`${service.restRoot}/Moin`);
-
-      expect(req.request.method).toBe('GET');
-      req.flush(mockBooks[0]);
+      expect(false).toBeTruthy();
     }
   ));
 
@@ -62,11 +49,7 @@ describe('BookService', () => {
     (service: BookService, backend: HttpTestingController) => {
       const book = { ...mockBooks[0] };
       book.title = 'Moin';
-      service.updateBook(book).subscribe(b => expect(b.title).toBe('Moin'));
-      const req = backend.expectOne(`${service.restRoot}/${book.isbn}`);
-
-      expect(req.request.method).toBe('PUT');
-      req.flush(book);
+      expect(false).toBeTruthy();
     }
   ));
 
@@ -75,11 +58,7 @@ describe('BookService', () => {
     (service: BookService, backend: HttpTestingController) => {
       const book = new Book();
       book.title = 'Moin';
-      service.createBook(book).subscribe(b => expect(b.title).toBe('Moin'));
-      const req = backend.expectOne(`${service.restRoot}`);
-
-      expect(req.request.method).toBe('POST');
-      req.flush(book);
+      expect(false).toBeTruthy();
     }
   ));
 });

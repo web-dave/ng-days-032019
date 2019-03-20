@@ -45,13 +45,9 @@ describe('OrderBtnDirective', () => {
     expect(component).toBeTruthy();
   });
   it('should create a button with lable "Kauf mich!"', () => {
-    const btn = compiled.querySelector('button');
-    expect(btn.innerText).toBe('Kauf mich!');
+    expect(false).toBeTruthy();
   });
   it('should log to console', () => {
-    const btn = compiled.querySelector('button');
-    const mySpy = spyOn(console, 'log');
-    btn.click();
-    expect(mySpy).toHaveBeenCalledWith('this.orderBtn:', component.book);
+    expect(false).toBeTruthy();
   });
 });

@@ -19,10 +19,6 @@ describe('BookDetailsComponent', () => {
       imports: [RouterTestingModule],
       providers: [
         {
-          provide: BookService,
-          useClass: MockBooksService
-        },
-        {
           provide: ActivatedRoute,
           useValue: { params: of({ isbn: book.isbn }), snapshot: {} }
         }

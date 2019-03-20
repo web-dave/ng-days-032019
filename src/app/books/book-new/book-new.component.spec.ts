@@ -39,44 +39,18 @@ describe('BookNewComponent', () => {
   });
 
   it('should be invalid when initialized', () => {
-    expect(component.form.valid).toBeFalsy();
+    expect(false).toBeTruthy();
   });
 
   it('should require title otherwise mark title as invalid', () => {
-    expect(component.form.get('title').hasError('required')).toBeTruthy();
-    component.form.setValue({
-      title: '1234567',
-      isbn: '',
-      publisher: {
-        name: '',
-        url: ''
-      }
-    });
-    expect(component.form.get('title').hasError('required')).toBeFalsy();
+    expect(false).toBeTruthy();
   });
 
   it('should be valid if all values are valid', () => {
-    component.form.setValue({
-      title: '1234567',
-      isbn: '666666666',
-      publisher: {
-        name: 'Moiiiiiiin',
-        url: 'öldsigfjälrsdg'
-      }
-    });
-    expect(component.form.valid).toBeTruthy();
+    expect(false).toBeTruthy();
   });
 
   it('should call service.createBook on submit', inject([BookService], () => {
-    component.form.setValue({
-      title: '1234567',
-      isbn: '666666666',
-      publisher: {
-        name: 'Moiiiiiiin',
-        url: 'öldsigfjälrsdg'
-      }
-    });
-    component.saveBook();
-    expect(mySpy).toHaveBeenCalled();
+    expect(false).toBeTruthy();
   }));
 });

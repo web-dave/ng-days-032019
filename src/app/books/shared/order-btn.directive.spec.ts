@@ -1,12 +1,13 @@
 import { OrderBtnDirective } from './order-btn.directive';
 import { Component } from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+// tslint:disable:max-line-length
 
 @Component({
-  selector: 'foo',
+  selector: 'app-foo',
   template: '<div [appOrderBtn]=book></div>'
 })
-export class fooComp {
+export class FooComponent {
   book = {
     title: 'REST und HTTPS',
     subtitle: 'Entwicklung und Integration nach dem Architekturstil des Web',
@@ -24,18 +25,18 @@ export class fooComp {
 }
 
 describe('OrderBtnDirective', () => {
-  let component: fooComp;
-  let fixture: ComponentFixture<fooComp>;
+  let component: FooComponent;
+  let fixture: ComponentFixture<FooComponent>;
   let compiled: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [fooComp, OrderBtnDirective]
+      declarations: [FooComponent, OrderBtnDirective]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(fooComp);
+    fixture = TestBed.createComponent(FooComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     compiled = fixture.nativeElement;

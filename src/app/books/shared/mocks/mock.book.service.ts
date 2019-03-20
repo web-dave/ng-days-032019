@@ -2,6 +2,7 @@ import { IBook } from '../costum-types';
 import { of } from 'rxjs';
 import { Book } from '../Book.class';
 
+// tslint:disable:max-line-length
 export const mockBooks = [
   {
     title: 'Design Patterns',

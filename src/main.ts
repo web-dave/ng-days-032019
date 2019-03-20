@@ -1,12 +1,45 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import jasmineRequire from 'jasmine-core/lib/jasmine-core/jasmine.js';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+// tslint:disable-next-line:no-string-literal
+window['jasmineRequire'] = jasmineRequire;
+import 'jasmine-core/lib/jasmine-core/jasmine-html.js';
+import 'jasmine-core/lib/jasmine-core/boot.js';
 
-if (environment.production) {
-  enableProdMode();
+declare var jasmine;
+
+import './polyfills';
+
+import 'zone.js/dist/zone-testing';
+
+import { getTestBed } from '@angular/core/testing';
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting
+} from '@angular/platform-browser-dynamic/testing';
+
+// Spec files to include in the Stackblitz tests
+import './tests.sb.ts';
+
+//
+
+bootstrap();
+
+//
+
+function bootstrap() {
+  // tslint:disable-next-line:no-string-literal
+  if (window['jasmineRef']) {
+    location.reload();
+    return;
+  } else {
+    window.onload(undefined);
+    // tslint:disable-next-line:no-string-literal
+    window['jasmineRef'] = jasmine.getEnv();
+  }
+
+  // First, initialize the Angular testing environment.
+  getTestBed().initTestEnvironment(
+    BrowserDynamicTestingModule,
+    platformBrowserDynamicTesting()
+  );
 }
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));

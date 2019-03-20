@@ -6,7 +6,7 @@ import './app/my-nav/my-nav.component.spec.ts';
 
 // Books
 import './app/books/books.component.spec.ts';
-import './app/books/book-details/book-details.component.spec.ts';
+// import './app/books/book-details/book-details.component.spec.ts';
 import './app/books/book-edit/book-edit.component.spec.ts';
 import './app/books/book-list/book-list.component.spec.ts';
 import './app/books/book-new/book-new.component.spec.ts';

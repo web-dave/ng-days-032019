@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="saveBook()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      formControlName="title"
+    />
+    <small
+      [hidden]="!form.get('title').hasError('required')"
+      class="form-text text-muted"
+    >
+      Enter a title
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="isbn">ISBN</label>
+    <input class="form-control" type="text" id="isbn" formControlName="isbn" />
+  </div>
+  <span formGroupName="publisher">
+    <div class="form-group">
+      <label>Name:</label>
+      <input class="form-control" type="text" formControlName="name" />
+    </div>
+    <div class="form-group">
+      <label>Url:</label>
+      <input class="form-control" type="text" formControlName="url" />
+    </div>
+  </span>
+
+  <small
+    [hidden]="!form.get('isbn').hasError('minlength')"
+    class="form-text text-muted"
+  >
+    Not a valid ISBN
+  </small>
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+</form>
+<a routerLink=".." class="btn btn-danger">X</a>

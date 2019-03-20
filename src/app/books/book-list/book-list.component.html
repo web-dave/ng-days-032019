@@ -1,0 +1,11 @@
+<a [routerLink]="['new']" class="btn btn-default btn-sm">
+  NEW
+</a>
+<button (click)="changeBook()">Change</button>
+<ul *ngIf="books">
+  <app-book-preview
+    *ngFor="let book of books"
+    [book]="book"
+    (bookselected)="selectBook($event)"
+  ></app-book-preview>
+</ul>

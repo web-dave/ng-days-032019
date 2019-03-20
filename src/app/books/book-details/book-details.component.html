@@ -1,0 +1,22 @@
+<div class="card" *ngIf="(book$ | async) as book">
+  <div class="card-header">{{ book.title }} ({{ book.isbn }})</div>
+  <div class="card-body">
+    <p>
+      {{ book.abstract }}
+      <span class="badge">{{
+        book.numPages | pages: 'Anzahl der Seiten'
+      }}</span>
+    </p>
+    <p>{{ book.publisher.name }} ({{ book.publisher.url }})</p>
+  </div>
+  <div class="card-footer">
+    {{ book.author }} |
+    <a [routerLink]="['edit']" class="btn btn-default btn-sm">
+      edit
+    </a>
+    |
+    <a [routerLink]="['..']" class="btn btn-default btn-sm">
+      back
+    </a>
+  </div>
+</div>

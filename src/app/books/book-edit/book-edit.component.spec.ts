@@ -15,7 +15,7 @@ import {} from 'rxjs/operators';
 describe('BookEditComponent', () => {
   let component: BookEditComponent;
   let fixture: ComponentFixture<BookEditComponent>;
-  let compiled;
+  let compiled: HTMLElement;
   let service: MockBooksService;
   let mySpy;
 
@@ -47,7 +47,7 @@ describe('BookEditComponent', () => {
   });
 
   it('should validate that title is required and show an error message', fakeAsync(() => {
-    const title = compiled.querySelector('[name="title"]');
+    const title = compiled.querySelector('[name="title"]') as HTMLInputElement;
     title.value = '';
     title.dispatchEvent(new Event('input'));
     fixture.detectChanges();
@@ -56,7 +56,7 @@ describe('BookEditComponent', () => {
   }));
 
   it('should submit the book on click on the submit button', () => {
-    const btn = compiled.querySelector('.btn-success');
+    const btn = compiled.querySelector('.btn-success') as HTMLButtonElement;
     btn.click();
     expect(mySpy).toHaveBeenCalledWith(component.book);
   });

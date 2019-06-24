@@ -11,6 +11,7 @@ import { PagesPipe } from './shared/pages.pipe';
 import { OrderBtnDirective  } from './shared/order-btn.directive';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { BookNewComponent } from './book-new/book-new.component';
+import { HurzPipe } from './hurz.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BookNewComponent } from './book-new/book-new.component';
     PagesPipe,
     BookEditComponent,
     BookNewComponent,
-    OrderBtnDirective
+    OrderBtnDirective,
+    HurzPipe
   ],
   exports: [BooksComponent],
   imports: [CommonModule, BooksRoutingModule, FormsModule, ReactiveFormsModule]

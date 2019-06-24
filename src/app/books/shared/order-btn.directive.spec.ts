@@ -1,6 +1,7 @@
 import { OrderBtnDirective } from './order-btn.directive';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 // tslint:disable:max-line-length
 
 @Component({
@@ -28,6 +29,8 @@ describe('OrderBtnDirective', () => {
   let component: FooComponent;
   let fixture: ComponentFixture<FooComponent>;
   let compiled: HTMLElement;
+  let element: DebugElement;
+  let inst: OrderBtnDirective;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,15 +43,20 @@ describe('OrderBtnDirective', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     compiled = fixture.nativeElement;
+    element = fixture.debugElement.query(By.directive(OrderBtnDirective));
+    inst = element.injector.get(OrderBtnDirective);
   });
 
   it('should create an comp instance', () => {
     expect(component).toBeTruthy();
   });
   it('should create a button with lable "Kauf mich!"', () => {
-    expect(false).toBeTruthy();
+    expect(inst.orderBtnElement.innerText).toBe('Kauf mich!');
   });
   it('should log to console', () => {
-    expect(false).toBeTruthy();
+    // const btn = element.query(By.css('button'));
+    const mySpy = spyOn(console, 'log');
+    inst.orderBtnElement.click();
+    expect(mySpy).toHaveBeenCalledWith('this.orderBtn:', inst.appOrderBtn);
   });
 });

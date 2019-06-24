@@ -19,7 +19,7 @@ describe('BookPreviewComponent', () => {
     fixture = TestBed.createComponent(BookPreviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    compiled = fixture.debugElement.nativeElement;
+    compiled = fixture.nativeElement;
   });
 
   it('should create', () => {
@@ -28,13 +28,20 @@ describe('BookPreviewComponent', () => {
   it('should show the Book Title', () => {
     component.book = book;
     fixture.detectChanges();
-    expect(false).toBeTruthy();
+    const t = compiled.querySelector('li').innerText;
+    expect(t).toBe(book.title);
   });
 
   it('should emit the book', done => {
+    let expectedBook: IBook;
     component.book = book;
     fixture.detectChanges();
+    component.bookselected.subscribe(b => {
+      expectedBook = b;
+      expect(expectedBook).toBe(book);
+      done();
+    });
     const btn = compiled.querySelector('.btn-info') as HTMLButtonElement;
-    expect(false).toBeTruthy();
+    btn.click();
   });
 });

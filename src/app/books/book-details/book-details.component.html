@@ -1,4 +1,4 @@
-<div class="card" *ngIf="(book$ | async) as book">
+<div class="card" *ngIf="book$ | async as book">
   <div class="card-header">{{ book.title }} ({{ book.isbn }})</div>
   <div class="card-body">
     <p>
@@ -10,7 +10,7 @@
     <p>{{ book.publisher.name }} ({{ book.publisher.url }})</p>
   </div>
   <div class="card-footer">
-    {{ book.author }} |
+    {{ book.author }} | {{ foo('foo') }} | {{ n | hurz }}
     <a [routerLink]="['edit']" class="btn btn-default btn-sm">
       edit
     </a>

@@ -8,57 +8,73 @@ import { BookService } from './book.service';
 import { mockBooks } from './mocks/mock.book.service';
 import { Book } from './Book.class';
 
-describe('BookService', () => {
+fdescribe('BookService', () => {
+  let service: BookService;
+  let backend: HttpTestingController;
   beforeEach(() => {
     // setup @ngModule for testing
     TestBed.configureTestingModule({
       providers: [BookService],
       imports: [HttpClientTestingModule]
     });
+    service = TestBed.get(BookService);
+    backend = TestBed.get(HttpTestingController);
   });
 
   // check after each test there is no pending(open) request
-  afterEach(inject(
-    [HttpTestingController],
-    (backend: HttpTestingController) => {
-      backend.verify();
-    }
-  ));
+  afterEach(() => {
+    backend.verify();
+  });
 
-  it('should be created', inject([BookService], (service: BookService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
-  it('should return all books', inject(
-    [BookService, HttpTestingController],
-    (service: BookService, backend: HttpTestingController) => {
-      // call service method and test IN the subscription. no need to use async anymore!!
-      expect(false).toBeTruthy();
-    }
-  ));
+  it('should return all books', done => {
+    // call service method and test IN the subscription. no need to use async anymore!!
+    service.getBooks().subscribe(bs => {
+      expect(bs).toBe(mockBooks);
+      done();
+    });
+    backend
+      .expectOne('https://bookmonkey.azurewebsites.net/books')
+      .flush(mockBooks);
+  });
 
-  it('should return one specific book', inject(
-    [BookService, HttpTestingController],
-    (service: BookService, backend: HttpTestingController) => {
-      expect(false).toBeTruthy();
-    }
-  ));
+  it('should return one specific book', done => {
+    service.getBook('affe').subscribe(b => {
+      expect(b).toBe(mockBooks[0]);
+      done();
+    });
+    backend
+      .expectOne('https://bookmonkey.azurewebsites.net/books/affe')
+      .flush(mockBooks[0]);
+  });
 
-  it('should update a book', inject(
-    [BookService, HttpTestingController],
-    (service: BookService, backend: HttpTestingController) => {
-      const book = { ...mockBooks[0] };
-      book.title = 'Moin';
-      expect(false).toBeTruthy();
-    }
-  ));
+  it('should update a book', done => {
+    const book = { ...mockBooks[0] };
+    book.title = 'Moin';
+    service.updateBook(book).subscribe(b => {
+      expect(b.title).toBe('Moin');
+      done();
+    });
+    const req = backend.expectOne(
+      'https://bookmonkey.azurewebsites.net/books/' + book.isbn
+    );
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toBe(book);
+    req.flush(req.request.body);
+  });
 
-  it('should create a new book', inject(
-    [BookService, HttpTestingController],
-    (service: BookService, backend: HttpTestingController) => {
-      const book = new Book();
-      book.title = 'Moin';
-      expect(false).toBeTruthy();
-    }
-  ));
+  it('should create a new book', done => {
+    const book = new Book();
+    book.title = 'Moin';
+    service.createBook(book).subscribe(b => {
+      expect(b.title).toBe('Moin');
+      done();
+    });
+    const req = backend.expectOne('https://bookmonkey.azurewebsites.net/books');
+    expect(req.request.method).toBe('POST');
+    req.flush(req.request.body);
+  });
 });

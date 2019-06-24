@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IBook } from './costum-types';
 import { Book } from './Book.class';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class BookService {
     const url = `${this.restRoot}/${isbn}`;
     return this.http.get<IBook>(url);
   }
-  updateBook(book: IBook) {
+  updateBook(book: IBook): Observable<IBook> {
     const url = `${this.restRoot}/${book.isbn}`;
     return this.http.put<IBook>(url, book);
   }

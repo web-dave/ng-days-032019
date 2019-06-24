@@ -12,11 +12,20 @@ import { Observable } from 'rxjs';
 })
 export class BookDetailsComponent implements OnInit {
   book$: Observable<IBook>;
+  n = 42;
   constructor(private route: ActivatedRoute, private service: BookService) {}
+
+  foo(book) {
+    console.log('Foo', this.n);
+    return this.n;
+  }
 
   ngOnInit() {
     this.book$ = this.route.params.pipe(
       mergeMap(params => this.service.getBook(params.isbn))
     );
+    setInterval(() => {
+      this.n = 42;
+    }, 1500);
   }
 }

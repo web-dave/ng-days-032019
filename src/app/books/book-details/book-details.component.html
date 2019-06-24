@@ -10,7 +10,7 @@
     <p>{{ book.publisher.name }} ({{ book.publisher.url }})</p>
   </div>
   <div class="card-footer">
-    {{ book.author }} | {{ foo('foo') }} | {{ n | hurz }}
+    {{ book.author }} |
     <a [routerLink]="['edit']" class="btn btn-default btn-sm">
       edit
     </a>

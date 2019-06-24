@@ -21,7 +21,7 @@ export class BookPreviewComponent
   @Input() trigger: number;
   @Output() bookselected = new EventEmitter<IBook>();
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.book.title);
+    // console.log(this.book.title);
   }
   ngAfterViewChecked(): void {
     // console.log(this.book.title);

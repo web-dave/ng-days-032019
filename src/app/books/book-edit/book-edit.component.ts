@@ -29,8 +29,8 @@ export class BookEditComponent implements OnInit {
 
   validate(valid: boolean) {
     if (!valid) {
-      console.log(this.form.nativeElement.querySelector('input.ng-invalid'));
-      this.form.nativeElement.querySelector('input.ng-invalid').focus();
+      // console.log(this.form.nativeElement.querySelector('input.ng-invalid'));
+      // this.form.nativeElement.querySelector('input.ng-invalid').focus();
     }
   }
 }

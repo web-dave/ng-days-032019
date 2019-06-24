@@ -7,8 +7,9 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { BookService } from './book.service';
 import { mockBooks } from './mocks/mock.book.service';
 import { Book } from './Book.class';
+import { Subject } from 'rxjs';
 
-fdescribe('BookService', () => {
+describe('BookService', () => {
   let service: BookService;
   let backend: HttpTestingController;
   beforeEach(() => {

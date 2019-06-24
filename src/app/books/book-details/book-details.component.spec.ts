@@ -6,6 +6,7 @@ import { BookDetailsComponent } from './book-details.component';
 import { MockBooksService, mockBooks } from '../shared/mocks/mock.book.service';
 import { BookService } from '../shared/book.service';
 import { PagesPipe } from '../shared/mocks/mock.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('BookDetailsComponent', () => {
   let component: BookDetailsComponent;
@@ -16,7 +17,7 @@ describe('BookDetailsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [BookDetailsComponent, PagesPipe],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [
         {
           provide: ActivatedRoute,

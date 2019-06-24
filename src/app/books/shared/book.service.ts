@@ -12,11 +12,11 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  getBooks() {
+  getBooks(): Observable<IBook[]> {
     const url = this.restRoot;
     return this.http.get<IBook[]>(url);
   }
-  getBook(isbn: string) {
+  getBook(isbn: string): Observable<IBook> {
     const url = `${this.restRoot}/${isbn}`;
     return this.http.get<IBook>(url);
   }
@@ -24,7 +24,7 @@ export class BookService {
     const url = `${this.restRoot}/${book.isbn}`;
     return this.http.put<IBook>(url, book);
   }
-  createBook(book: IBook) {
+  createBook(book: IBook): Observable<IBook> {
     const url = `${this.restRoot}`;
     return this.http.post<IBook>(url, book);
   }

@@ -10,7 +10,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
-      schemas: []
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
   beforeEach(() => {

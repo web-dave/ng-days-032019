@@ -37,7 +37,7 @@ export class BookNewComponent implements OnInit {
 
   saveBook() {
     const book = this.service.getNewBook();
-    console.log(book);
+    // console.log(book);
     const newBook = {
       ...book,
       ...this.form.value

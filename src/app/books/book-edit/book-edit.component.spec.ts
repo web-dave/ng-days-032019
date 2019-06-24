@@ -56,6 +56,8 @@ describe('BookEditComponent', () => {
   }));
 
   it('should submit the book on click on the submit button', () => {
-    expect(false).toBeTruthy();
+    const btn = compiled.querySelector('button');
+    btn.click();
+    expect(mySpy).toHaveBeenCalledWith(component.book);
   });
 });

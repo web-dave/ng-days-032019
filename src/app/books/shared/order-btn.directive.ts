@@ -20,11 +20,11 @@ export class OrderBtnDirective implements OnChanges {
   }
 
   @HostListener('mouseenter') onMouseEnter() {
-    console.log('mouseenter');
+    // console.log('mouseenter');
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    console.log('mouseleave');
+    // console.log('mouseleave');
   }
 
   constructor(private elementRef: ElementRef) {

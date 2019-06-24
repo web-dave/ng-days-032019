@@ -10,7 +10,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {}
   isSaved() {
-    console.log('About');
+    // console.log('About');
     return true;
   }
 }

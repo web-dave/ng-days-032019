@@ -14,8 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: BookListComponent,
-        canDeactivate: [LeaveGuard]
+        component: BookListComponent
       },
       {
         path: 'new',
